@@ -23,6 +23,7 @@ _children="${unicorn_children}"
 if [ -z "$2" ]; then
 
         for _child in ${_children}; do
+		child_rcvar="${name}_${_child}_enable
 		if checkyesno ${child_rcvar}; then
 			echo "Running ${1} on ${_child}"
 			$0 $1 $_child
