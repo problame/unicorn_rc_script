@@ -32,7 +32,7 @@ Edit your `rc.conf`. In this example, we'll add a Redmine and a GitLab installat
 
 The following variables are inferred by default.
 
-	unicorn_<child>_group=unicorn_redmine_user
+	unicorn_<child>_group=unicorn_<child>_user
 	unicorn_<child>_pidfile=unicorn_<child>_directory/tmp/pids/unicorn.pid
 	unicorn_<child>_env="production" #unicorn -E production
 	
