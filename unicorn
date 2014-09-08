@@ -16,19 +16,20 @@ load_rc_config "${name}"
 #global flags
 : ${unicorn_enable:="NO"}
 : ${unicorn_children:=""} #e.g.: xyz_children="foo bar" => xyz_foo_variable="" and xyz_bar_variable=""
-
+: ${unicorn_scriptname:="/usr/local/etc/rc.d/unicorn"} #the path to the unicorn script - necessary for launching multiple children
 _children="${unicorn_children}"
 
 # If no specific child is mentioned, apply command to all children
 if [ -z "$2" ]; then
 
         for _child in ${_children}; do
-		child_rcvar="${name}_${_child}_enable
-		if checkyesno ${child_rcvar}; then
-			echo "Running ${1} on ${_child}"
-			$0 $1 $_child
+
+		child_rcvar="${name}_${_child}_enable"
+		if checkyesno "${child_rcvar}"; then
+			debug "Running ${1} on ${_child}"
+			${unicorn_scriptname} ${1} ${_child}
 		else
-			echo "Skipping ${_child}"
+			debug "Skipping ${_child}"
 		fi
         done
         exit 0
