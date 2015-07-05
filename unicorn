@@ -75,7 +75,7 @@ _set_child_var 'unicorn_user' 'user' 'yes'
 _set_child_var 'unicorn_group' 'group' 'no' "$unicorn_user"
 _set_child_var 'pidfile' 'pidfile' 'no' "${unicorn_chdir}/tmp/pids/unicorn.pid"
 
-procname="ruby19" #check bundler's shebang for details
+procname="ruby21" #check bundler's shebang for details
 command="/usr/local/bin/bundle"
 command_args="exec /usr/local/bin/unicorn -c ${unicorn_config} -E ${rails_env} -D"
 sig_stop="QUIT"
